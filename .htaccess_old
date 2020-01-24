@@ -1,0 +1,43 @@
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ /index.php?/$1 [L] #important pour enlever le index.php
+
+# Remove index.php
+#RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
+#RewriteCond %{REQUEST_URI} !^/index\.php [NC] # Don't mess with admin requests
+#RewriteRule (.*?)index\.php/*(.*) http://localhost:8888/charlesmarceau.com/$1$2 [R=301,NE,L]
+
+
+
+
+
+
+# Article sans numéro de page :
+#RewriteRule ^post/([0-9]+)$   /?p=posts.single&id=$1 [L]
+
+# Article avec numéro de page :
+#RewriteRule ^article-([0-9]+)-([0-9]+)-([0-9]+).html   /articles/article.php?id=$1&page=$2&rubrique=$3 [L]
+
+
+
+
+
+
+
+
+# Remove ?p=
+#RewriteCond %{THE_REQUEST} ^GET\ /\?(([^&\s]*&)*)p=([^&\s]+)&?([^\s]*)
+#RewriteRule ^(.*)$ /%3?%1%4 [L,R=301]
+
+# Send would-be 404 requests to Craft
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_URI} !^/(favicon\.ico|apple-touch-icon.*\.png)$ [NC]
+#RewriteRule (.+) index.php?p=$1 [QSA,L]
+
+
+</IfModule>
